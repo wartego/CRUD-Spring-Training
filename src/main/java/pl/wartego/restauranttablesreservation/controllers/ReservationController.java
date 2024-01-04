@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.wartego.restauranttablesreservation.models.Reservation;
 import pl.wartego.restauranttablesreservation.models.RestaurantTable;
 import pl.wartego.restauranttablesreservation.repository.ReservationRepository;
@@ -15,7 +16,7 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/reservations")
 public class ReservationController {
     private ReservationRepository reservationRepository;
