@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Reservations</title >
+</head>
+<body>
+
+<form th:object="${reservation}" method="post">
+<label>Last Name</label>
+<input type="text" th:field="*{lastName}" required="true"/>
+<label>First Name</label>
+<input type="text" th:field="*{firstName}" required= "true"/>
+<label > Seats </label >
+<input type= "number" min="1" th:field= "*{seats}"/>
+<label > Date </label >
+<input type= "datetime-local" class="form-control" th:field="*{startTime}" required="true"/>
+<select th:field="*{duration}">
+    <option th:each="i : ${#numbers.sequence(30,121,30)}" th:value="${i}" th:text="${i} + ' min'">
+</option >
+</select>
+<input type="submit" value="Add"/>
+<p th:if="${noTableAvailable == true}">No table available at
+    this time </p>
+</form>
+<table>
+<thead>
+    <tr>
+            <th> Id</th>
+            <th> Last Name </th>
+            <th> Fist Name </th>
+            <th> Date </th>
+            <th> Duration </th>
+            <th> Requested seats </th>
+            <th> Table </th>
+            <th> Table seats </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r: ${reservations}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.lastName}"></td>
+        <td th:text="${r.firstName}"></td>
+        <td th:text="${r.startTime}"></td>
+        <td th:text="${r.duration}"></td>
+        <td th:text="${r.seats}"></td>
+        <td th:text="${r.restaurantTable.id}"></td>
+        <td th:text="${r.restaurantTable.seats}"></td>
+    </tr>
+</tbody>
+</table>
+</body>
+</html>

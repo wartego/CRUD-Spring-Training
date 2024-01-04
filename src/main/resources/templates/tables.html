@@ -1,0 +1,29 @@
+<!DOCTYPE html >
+<html lang= "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset= "UTF-8"/>
+<title>Tables</title >
+</head>
+<body>
+<form th:object="${restaurantTable}" method= "post">
+<label for="seatsInput"> Seats : </label>
+<input id="seatsInput" type= "number" min= "1" th:field= "*{seats}"/>
+<input type= "submit" value= "Add"/>
+<p th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}">Name Error</p>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>seats</th>
+        </tr>
+    </thead>
+    <tbody >
+    <tr th:each= "t: ${tables}">
+        <td th:text= "${t.id}">1</td>
+        <td th:text= "${t.seats}">4</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
